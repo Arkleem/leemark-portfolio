@@ -80,57 +80,59 @@ fn App() -> impl IntoView {
             </span>
         </div>
 
-        <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-emerald-500/20 dark:border-emerald-500/20 transition-colors">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-                <a href="#home" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-serif font-bold text-lg shadow-md shadow-emerald-500/30">
-                        "LA"
+        <header class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+            <div class="pointer-events-auto w-full max-w-6xl rounded-full bg-white/20 dark:bg-slate-900/30 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-300">
+                <div class="h-16 px-6 flex items-center justify-between">
+                    <a href="#home" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-serif font-bold text-base shadow-sm shadow-emerald-500/30 ring-1 ring-white/30">
+                            "LA"
+                        </div>
+                        <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white">
+                            Leemark <span class="text-emerald-600 dark:text-emerald-400 font-sans font-medium text-sm sm:text-base hidden sm:inline">"Arojo"</span>
+                        </span>
+                    </a>
+
+                    <nav class="hidden md:flex items-center gap-1">
+                        <a href="#about" class="px-4 py-1.5 text-sm font-medium rounded-full text-slate-800 dark:text-slate-100 hover:bg-white/40 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200">"About"</a>
+                        <a href="#skills" class="px-4 py-1.5 text-sm font-medium rounded-full text-slate-800 dark:text-slate-100 hover:bg-white/40 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200">"Tech Stack"</a>
+                        <a href="#projects" class="px-4 py-1.5 text-sm font-medium rounded-full text-slate-800 dark:text-slate-100 hover:bg-white/40 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200">"Projects"</a>
+                        <a href="#experience" class="px-4 py-1.5 text-sm font-medium rounded-full text-slate-800 dark:text-slate-100 hover:bg-white/40 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200">"Experience"</a>
+                        <a href="#contact" class="px-4 py-1.5 text-sm font-semibold rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 hover:scale-105 transition-all duration-200 ml-2">"Contact Me"</a>
+
+                        <span on:click=toggle_theme class="ml-3 cursor-pointer text-slate-700 dark:text-slate-200 hover:text-amber-400 transition-colors">
+                            {move || if is_dark.get() {
+                                view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
+                            } else {
+                                view! { <i class="fa-solid fa-moon"></i> }.into_view()
+                            }}
+                        </span>
+                    </nav>
+
+                    <div class="flex items-center gap-2 md:hidden">
+                        <span on:click=toggle_theme class="p-2 cursor-pointer text-slate-700 dark:text-slate-200">
+                            {move || if is_dark.get() {
+                                view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
+                            } else {
+                                view! { <i class="fa-solid fa-moon"></i> }.into_view()
+                            }}
+                        </span>
+                        <button on:click=move |_| set_mobile_menu_open.update(|v| *v = !*v) class="p-2 rounded-full text-slate-700 dark:text-slate-200 hover:bg-white/20 dark:hover:bg-slate-800/40">
+                            <i class="fa-solid fa-bars text-lg"></i>
+                        </button>
                     </div>
-                    <span class="font-serif font-bold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">
-                        Leemark <span class="text-emerald-600 dark:text-emerald-400 font-sans font-medium text-base sm:text-lg block sm:inline sm:ml-1">"Arojo"</span>
-                    </span>
-                </a>
-
-                <nav class="hidden md:flex items-center gap-2">
-                    <a href="#about" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"About"</a>
-                    <a href="#skills" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Tech Stack"</a>
-                    <a href="#projects" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Projects"</a>
-                    <a href="#experience" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Experience"</a>
-                    <a href="#contact" class="px-4 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 transition-all ml-2">"Contact Me"</a>
-
-                    <span on:click=toggle_theme class="ml-3 cursor-pointer text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors">
-                        {move || if is_dark.get() {
-                            view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
-                        } else {
-                            view! { <i class="fa-solid fa-moon"></i> }.into_view()
-                        }}
-                    </span>
-                </nav>
-
-                <div class="flex items-center gap-2 md:hidden">
-                    <button on:click=toggle_theme class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                        {move || if is_dark.get() {
-                            view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
-                        } else {
-                            view! { <i class="fa-solid fa-moon"></i> }.into_view()
-                        }}
-                    </button>
-                    <button on:click=move |_| set_mobile_menu_open.update(|v| *v = !*v) class="p-2 rounded-lg text-slate-700 dark:text-slate-200">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
                 </div>
-            </div>
 
-            <div class={move || format!("md:hidden border-b border-emerald-500/20 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-2 {}", if mobile_menu_open.get() { "" } else { "hidden" })}>
-                <a href="#about" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200">"About"</a>
-                <a href="#skills" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200">"Tech Stack"</a>
-                <a href="#projects" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200">"Projects"</a>
-                <a href="#experience" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200">"Experience"</a>
-                <a href="#contact" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl bg-emerald-600 text-white text-center shadow-md shadow-emerald-500/30">"Contact Me"</a>
+                <div class={move || format!("md:hidden rounded-b-3xl border-t border-white/20 dark:border-white/10 bg-white/40 dark:bg-slate-900/60 backdrop-blur-2xl px-4 pt-3 pb-5 space-y-2 {}", if mobile_menu_open.get() { "" } else { "hidden" })}>
+                    <a href="#about" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-white/30 dark:hover:bg-slate-800/40">"About"</a>
+                    <a href="#skills" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-white/30 dark:hover:bg-slate-800/40">"Tech Stack"</a>
+                    <a href="#projects" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-white/30 dark:hover:bg-slate-800/40">"Projects"</a>
+                    <a href="#experience" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-white/30 dark:hover:bg-slate-800/40">"Experience"</a>
+                    <a href="#contact" on:click=move |_| set_mobile_menu_open.set(false) class="block px-4 py-2 rounded-xl bg-emerald-600 text-white text-center shadow-md shadow-emerald-500/30">"Contact Me"</a>
+                </div>
             </div>
         </header>
 
-        <main class="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-32 relative z-10">
+       <main class="pt-32 pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-32 relative z-10">
             // HERO SECTION
             // HERO SECTION
                         <section id="home" class="min-h-[65vh] flex flex-col justify-center space-y-6 pt-2">
