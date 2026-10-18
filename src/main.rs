@@ -252,7 +252,7 @@ fn App() -> impl IntoView {
                                     </section>
 
                                     // TECH STACK SECTION (Matched Terminal Theme)
-                                    // TECH STACK SECTION (Adaptive Light/Dark Terminal Theme)
+
                                                 <section id="skills" class="min-h-[80vh] flex flex-col justify-center space-y-6 pt-10">
                                                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white border-b border-emerald-500/30 pb-3 flex items-center gap-2">
                                                         <i class="fa-solid fa-code text-emerald-600 dark:text-emerald-400"></i> "Tech Stack"
@@ -329,7 +329,7 @@ fn App() -> impl IntoView {
                                                     </div>
                                                 </section>
                                                 // PROJECTS SECTION (Terminal Command Output View)
-                                                // PROJECTS SECTION (Adaptive Light/Dark Terminal Theme)
+
                                                             <section id="projects" class="min-h-[85vh] flex flex-col justify-center space-y-6 pt-10">
                                                                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white border-b border-emerald-500/30 pb-3 flex items-center gap-2">
                                                                     <i class="fa-solid fa-diagram-project text-emerald-600 dark:text-emerald-400"></i> "My Projects"
@@ -422,7 +422,7 @@ fn App() -> impl IntoView {
                                                                 </div>
                                                             </section>
             // EXPERIENCE & EDUCATION SECTION
-            // EXPERIENCE & EDUCATION SECTION (Adaptive Light/Dark Terminal Theme)
+
                         <section id="experience" class="min-h-[85vh] flex flex-col justify-center space-y-6 pt-10">
                             <h2 class="text-2xl font-bold text-slate-900 dark:text-white border-b border-emerald-500/30 pb-3 flex items-center gap-2">
                                 <i class="fa-solid fa-briefcase text-emerald-600 dark:text-emerald-400"></i> "Experience & Education"
@@ -528,9 +528,9 @@ fn App() -> impl IntoView {
                                                 </p>
 
                                                 <div class="flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-6 text-sm font-semibold text-emerald-700 dark:text-emerald-400 pt-2 bg-white/70 dark:bg-black/40 p-4 rounded-xl border border-emerald-500/20 shadow-sm">
-                                                    <a href="mailto:leemarkarojo7@gmail.com" class="hover:underline flex items-center gap-2">
-                                                        <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-300"></i> "leemarkarojo7@gmail.com"
-                                                    </a>
+                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leemarkarojo7@gmail.com&su=Portfolio%20Inquiry" target="_blank" class="hover:underline flex items-center gap-2">
+                                                    <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-300"></i> "leemarkarojo7@gmail.com"
+                                                </a>
                                                     <a href="tel:+639096830094" class="hover:underline flex items-center gap-2">
                                                         <i class="fa-solid fa-phone text-emerald-600 dark:text-emerald-300"></i> "+63 909 683 0094"
                                                     </a>
