@@ -98,13 +98,13 @@ fn App() -> impl IntoView {
                     <a href="#experience" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Experience"</a>
                     <a href="#contact" class="px-4 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 transition-all ml-2">"Contact Me"</a>
 
-                    <button on:click=toggle_theme class="ml-3 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors">
+                    <span on:click=toggle_theme class="ml-3 cursor-pointer text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors">
                         {move || if is_dark.get() {
                             view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
                         } else {
                             view! { <i class="fa-solid fa-moon"></i> }.into_view()
                         }}
-                    </button>
+                    </span>
                 </nav>
 
                 <div class="flex items-center gap-2 md:hidden">
