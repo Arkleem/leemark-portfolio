@@ -141,7 +141,7 @@ fn App() -> impl IntoView {
                             <div class="flex flex-col md:flex-row items-center gap-8 pt-2">
                             <div class="relative w-36 h-36 sm:w-44 sm:h-44 shrink-0 rounded-full p-1 bg-gradient-to-tr from-emerald-500 to-teal-600 shadow-xl shadow-emerald-500/20 group">
                                 <div class="w-full h-full rounded-full overflow-hidden bg-white dark:bg-slate-900 border-2 border-white dark:border-slate-900">
-                                    <img src="/leemark-portfolio/static/rustdev.png" alt="Leemark E. Arojo" class="w-full h-full object-cover contrast-110 group-hover:scale-105 transition-transform duration-300"/>
+                                  <img src="/leemark-portfolio/rustdev.png" alt="Leemark E. Arojo" class="w-full h-full object-cover contrast-110 group-hover:scale-105 transition-transform duration-300"/> alt="Leemark E. Arojo" class="w-full h-full object-cover contrast-110 group-hover:scale-105 transition-transform duration-300"/>
                                 </div>
                             </div>
                                 <div class="space-y-4 text-center md:text-left">
