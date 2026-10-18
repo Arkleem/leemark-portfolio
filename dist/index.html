@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leemark| Rust Full-Stack Developer</title>
+  <link rel="icon" type="image/png" href="/rustdev.png">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 300: '#6ee7b7',
+              400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857',
+              800: '#065f46', 900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<link rel="modulepreload" href="/leptos-portfolio-7eed33661792ab88.js" crossorigin="anonymous" integrity="sha384-/PRD6pTkRlV0s/KnasaP1VTz3bK8ZpDd6NR7ksLDtSlJFtHw4zbnMLJK3virJdJs"><link rel="preload" href="/leptos-portfolio-7eed33661792ab88_bg.wasm" crossorigin="anonymous" integrity="sha384-2aEYn2X3YpE5Fky6bEPlvn28QUowYb0Mm89uxK1kc3tCOuCh53jqRIG3qyknJaOo" as="fetch" type="application/wasm"></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+
+  <!-- 1. Background Canvas for Lightning Particles -->
+  <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- 2. Leptos App Mount Container -->
+  <div id="app" class="relative z-10"></div>
+
+  <!-- 3. Jagged Green Lightning Particle Script -->
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let mouse = { x: null, y: null, radius: 180 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 3;
+        this.vy = (Math.random() - 0.5) * 3;
+        this.size = Math.random() * 2 + 1;
+        this.alpha = Math.random() * 0.7 + 0.3;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
+        ctx.fillStyle = `rgba(110, 231, 183, ${this.alpha})`;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = '#34d399';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function drawLightning(x1, y1, x2, y2, alpha) {
+      ctx.strokeStyle = `rgba(167, 243, 208, ${alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#10b981';
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+
+      let segments = 5;
+      let dx = (x2 - x1) / segments;
+      let dy = (y2 - y1) / segments;
+
+      let cx = x1;
+      let cy = y1;
+
+      for (let i = 1; i < segments; i++) {
+        cx += dx + (Math.random() - 0.5) * 20;
+        cy += dy + (Math.random() - 0.5) * 20;
+        ctx.lineTo(cx, cy);
+      }
+
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    const particles = Array.from({ length: 45 }, () => new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140) {
+            const alphaLine = (1 - (dist / 140)) * 0.4;
+            drawLightning(particles[i].x, particles[i].y, particles[j].x, particles[j].y, alphaLine);
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const mdx = particles[i].x - mouse.x;
+          const mdy = particles[i].y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+          if (mdist < mouse.radius) {
+            const mAlpha = (1 - (mdist / mouse.radius)) * 0.8;
+            drawLightning(particles[i].x, particles[i].y, mouse.x, mouse.y, mAlpha);
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+<script type="module">
+import init, * as bindings from '/leptos-portfolio-7eed33661792ab88.js';
+const wasm = await init({ module_or_path: '/leptos-portfolio-7eed33661792ab88_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script><script>"use strict";
+
+(function () {
+
+    const address = '{{__TRUNK_ADDRESS__}}';
+    const base = '{{__TRUNK_WS_BASE__}}';
+    let protocol = '';
+    protocol =
+        protocol
+            ? protocol
+            : window.location.protocol === 'https:'
+                ? 'wss'
+                : 'ws';
+    const url = protocol + '://' + address + base + '.well-known/trunk/ws';
+
+    class Overlay {
+        constructor() {
+            // create an overlay
+            this._overlay = document.createElement("div");
+            const style = this._overlay.style;
+            style.height = "100vh";
+            style.width = "100vw";
+            style.position = "fixed";
+            style.top = "0";
+            style.left = "0";
+            style.backgroundColor = "rgba(222, 222, 222, 0.5)";
+            style.fontFamily = "sans-serif";
+            // not sure that's the right approach
+            style.zIndex = "1000000";
+            style.backdropFilter = "blur(1rem)";
+
+            const container = document.createElement("div");
+            // center it
+            container.style.position = "absolute";
+            container.style.top = "30%";
+            container.style.left = "15%";
+            container.style.maxWidth = "85%";
+
+            this._title = document.createElement("div");
+            this._title.innerText = "Build failure";
+            this._title.style.paddingBottom = "2rem";
+            this._title.style.fontSize = "2.5rem";
+
+            this._message = document.createElement("div");
+            this._message.style.whiteSpace = "pre-wrap";
+
+            const icon= document.createElement("div");
+            icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#dc3545" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>';
+            this._title.prepend(icon);
+
+            container.append(this._title, this._message);
+            this._overlay.append(container);
+
+            this._inject();
+            window.setInterval(() => {
+                this._inject();
+            }, 250);
+        }
+
+        set reason(reason) {
+            this._message.textContent = reason;
+        }
+
+        _inject() {
+            if (!this._overlay.isConnected) {
+                // prepend it
+                document.body?.prepend(this._overlay);
+            }
+        }
+
+    }
+
+    class Client {
+        constructor(url) {
+            this.url = url;
+            this.poll_interval = 5000;
+            this._overlay = null;
+        }
+
+        start() {
+            const ws = new WebSocket(this.url);
+            ws.onmessage = (ev) => {
+                const msg = JSON.parse(ev.data);
+                switch (msg.type) {
+                    case "reload":
+                        this.reload();
+                        break;
+                    case "buildFailure":
+                        this.buildFailure(msg.data)
+                        break;
+                }
+            };
+            ws.onclose = () => this.onclose();
+        }
+
+        onclose() {
+            window.setTimeout(
+                () => {
+                    // when we successfully reconnect, we'll force a
+                    // reload (since we presumably lost connection to
+                    // trunk due to it being killed, so it will have
+                    // rebuilt on restart)
+                    const ws = new WebSocket(this.url);
+                    ws.onopen = () => window.location.reload();
+                    ws.onclose = () => this.onclose();
+                },
+                this.poll_interval);
+        }
+
+        reload() {
+            window.location.reload();
+        }
+
+        buildFailure({reason}) {
+            // also log the console
+            console.error("Build failed:", reason);
+
+            console.debug("Overlay", this._overlay);
+
+            if (!this._overlay) {
+                this._overlay = new Overlay();
+            }
+            this._overlay.reason = reason;
+        }
+    }
+
+    new Client(url).start();
+
+})()
+</script></body>
+</html>
