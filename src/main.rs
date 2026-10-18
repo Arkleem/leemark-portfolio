@@ -91,14 +91,14 @@ fn App() -> impl IntoView {
                     </span>
                 </a>
 
-                <nav class="hidden md:flex items-center gap-2">
-                    <a href="#about" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"About"</a>
-                    <a href="#skills" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Tech Stack"</a>
-                    <a href="#projects" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Projects"</a>
-                    <a href="#experience" class="px-3 py-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Experience"</a>
-                    <a href="#contact" class="px-4 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 transition-all ml-2">"Contact Me"</a>
+                <nav class="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full backdrop-blur-xl bg-white/70 dark:bg-slate-900/70 border border-white/20 dark:border-slate-800/60 shadow-xl shadow-slate-900/5 dark:shadow-black/40 transition-all">
+                    <a href="#about" class="px-3.5 py-1.5 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"About"</a>
+                    <a href="#skills" class="px-3.5 py-1.5 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Tech Stack"</a>
+                    <a href="#projects" class="px-3.5 py-1.5 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Projects"</a>
+                    <a href="#experience" class="px-3.5 py-1.5 text-sm font-medium rounded-full text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">"Experience"</a>
+                    <a href="#contact" class="px-4 py-1.5 text-sm font-semibold rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all ml-1">"Contact Me"</a>
 
-                    <span on:click=toggle_theme class="ml-3 cursor-pointer text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors">
+                    <span on:click=toggle_theme class="ml-2.5 p-2 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800/60 hover:text-emerald-500 transition-all">
                         {move || if is_dark.get() {
                             view! { <i class="fa-solid fa-sun text-amber-400"></i> }.into_view()
                         } else {
