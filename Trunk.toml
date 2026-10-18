@@ -1,0 +1,13 @@
+[build]
+# The index HTML file to drive the build.
+target = "index.html"
+# The output dist dir.
+dist = "dist"
+
+[serve]
+address = "127.0.0.1"
+port = 8080
+
+[release]
+# Crucial for GitHub Pages project subdirectories!
+public_url = "/leemark-portfolio/"
