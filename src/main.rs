@@ -528,8 +528,10 @@ fn App() -> impl IntoView {
                                                 </p>
 
                                                 <div class="flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-6 text-sm font-semibold text-emerald-700 dark:text-emerald-400 pt-2 bg-white/70 dark:bg-black/40 p-4 rounded-xl border border-emerald-500/20 shadow-sm">
-                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leemarkarojo7@gmail.com&su=Portfolio%20Inquiry" target="_blank" class="hover:underline flex items-center gap-2">
-                                                    <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-300"></i> "leemarkarojo7@gmail.com"
+                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leemarkarojo7@gmail.com&su=Portfolio%20Inquiry" target="_blank" class="hover:underline flex items-center gap-2 group">
+                                                    <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-300"></i>
+                                                    <span>"leemarkarojo7@gmail.com"</span>
+                                                    <i class="fa-solid fa-up-right-from-square text-xs text-emerald-500/70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
                                                 </a>
                                                     <a href="tel:+639096830094" class="hover:underline flex items-center gap-2">
                                                         <i class="fa-solid fa-phone text-emerald-600 dark:text-emerald-300"></i> "+63 909 683 0094"
